@@ -31,14 +31,12 @@
     "@shopify/polaris": "^12.0.0",
     "@shopify/shopify-app-remix": "^3.7.0",
     "@shopify/shopify-app-session-storage-memory": "^4.0.20",
-    "canvas": "^2.11.2",
     "compression": "^1.8.1",
     "express": "^4.21.2",
     "isbot": "^5.1.0",
     "morgan": "^1.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sharp": "^0.33.0",
     "vite-tsconfig-paths": "^5.0.1"
   },
   "devDependencies": {
