@@ -1,10 +1,10 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "92c4ac9864bf9013179f4d04be50e0ce"
-name = "Axnivo Collections Manager"
-application_url = "https://collection-creator.onrender.com"
+client_id = "b1ff1c6deec209c1d5a589ad5363af8b"
+name = "AI-Size-Chart-Creator"
+application_url = "https://size-chart-creator-1.onrender.com"
 embedded = true
-handle = "axnivo-collections-manager"
+handle = "ai-size-chart-creator"
 
 [build]
 automatically_update_urls_on_dev = true
@@ -33,7 +33,7 @@ api_version = "2025-07"
 scopes = "read_inventory,read_products,write_inventory,write_products"
 
 [auth]
-redirect_urls = ["https://collection-creator.onrender.com/auth/callback", "https://collection-creator.onrender.com/auth/shopify/callback", "https://collection-creator.onrender.com/api/auth/callback"]
+redirect_urls = ["https://size-chart-creator-1.onrender.com/auth/callback", "https://size-chart-creator-1.onrender.com/auth/shopify/callback", "https://size-chart-creator-1.onrender.com/api/auth/callback"]
 
 [pos]
 embedded = false
