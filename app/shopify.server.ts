@@ -2,11 +2,14 @@ import {
   ApiVersion,
   AppDistribution,
   shopifyApp,
+  BoundaryType,
 } from "@shopify/shopify-app-remix/server";
 import { MemorySessionStorage } from "@shopify/shopify-app-session-storage-memory";
 
-// Use Memory session storage with extended TTL
-const memoryStorage = new MemorySessionStorage();
+// Use Memory session storage with extended TTL and proper configuration for embedded apps
+const memoryStorage = new MemorySessionStorage({
+  storagePathKeys: ["id", "shop", "state", "accessToken", "scope"],
+});
 
 // Track uninstalled shops to force re-authentication
 const uninstalledShops = new Set<string>();
@@ -20,6 +23,8 @@ const shopify = shopifyApp({
   authPathPrefix: "/auth",
   sessionStorage: memoryStorage,
   distribution: AppDistribution.AppStore,
+  isEmbeddedApp: true,
+  useOnlineTokens: false,
   webhooks: {
     APP_UNINSTALLED: {
       deliveryMethod: "http",
