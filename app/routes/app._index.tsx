@@ -39,27 +39,18 @@ import { authenticate, isShopUninstalled } from "../shopify.server";
 import { checkSubscriptionStatus } from "../utils/subscription-redirect.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  let admin, session;
+  // Don't wrap in try-catch - let authenticate.admin handle redirects
+  const { admin, session } = await authenticate.admin(request);
   
-  try {
-    const auth = await authenticate.admin(request);
-    admin = auth.admin;
-    session = auth.session;
-    
-    if (!session) {
-      console.log('No session in app._index, redirecting to auth');
-      return redirect('/auth');
-    }
-    
-    // Check if shop was recently uninstalled and needs re-authentication
-    if (isShopUninstalled(session.shop)) {
-      console.log('Shop was uninstalled, forcing re-authentication:', session.shop);
-      return redirect('/auth');
-    }
-  } catch (error) {
-    console.log('App loader authentication error:', error);
-    // Let the authenticate.admin handle the redirect
-    throw error;
+  if (!session) {
+    console.log('No session in app._index, authentication required');
+    throw new Response(null, { status: 401 });
+  }
+  
+  // Check if shop was recently uninstalled and needs re-authentication
+  if (isShopUninstalled(session.shop)) {
+    console.log('Shop was uninstalled, forcing re-authentication:', session.shop);
+    throw new Response(null, { status: 401 });
   }
   
   // Check subscription status
