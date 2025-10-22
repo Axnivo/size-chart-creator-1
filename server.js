@@ -19,12 +19,34 @@ app.use((req, res, next) => {
   next();
 });
 
-// Add CORS headers for Shopify
+// Add CORS headers and cookie settings for Shopify embedded apps
 app.use((req, res, next) => {
   res.header('X-Frame-Options', 'ALLOWALL');
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  // Override any Set-Cookie headers to include SameSite=None; Secure
+  const originalSetHeader = res.setHeader;
+  res.setHeader = function(name, value) {
+    if (name.toLowerCase() === 'set-cookie') {
+      if (Array.isArray(value)) {
+        value = value.map(cookie => {
+          if (!cookie.includes('SameSite=')) {
+            return cookie + '; SameSite=None; Secure';
+          }
+          return cookie;
+        });
+      } else if (typeof value === 'string') {
+        if (!value.includes('SameSite=')) {
+          value = value + '; SameSite=None; Secure';
+        }
+      }
+    }
+    originalSetHeader.call(this, name, value);
+  };
+  
   next();
 });
 
