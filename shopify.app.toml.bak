@@ -1,0 +1,36 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "92c4ac9864bf9013179f4d04be50e0ce"
+name = "Collections Creator"
+application_url = "https://notices-asian-heat-yes.trycloudflare.com"
+embedded = true
+handle = "collections-creator"
+
+[build]
+include_config_on_deploy = true
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2025-07"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
+  uri = "/webhooks"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,read_products,write_inventory,read_inventory"
+
+[auth]
+redirect_urls = ["https://shadow-room-un-e.trycloudflare.com/auth/callback", "https://shadow-room-un-e.trycloudflare.com/auth/shopify/callback", "https://shadow-room-un-e.trycloudflare.com/api/auth/callback"]
+
+[pos]
+embedded = false

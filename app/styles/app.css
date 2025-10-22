@@ -1,0 +1,242 @@
+/* Modern gradient background */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+/* Animated gradient for hero section */
+.animated-gradient {
+  background: linear-gradient(-45deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+/* Unique gradient patterns */
+.gradient-magic {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  background-size: 200% 200%;
+  animation: magicShift 8s ease infinite;
+}
+
+@keyframes magicShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glassmorphism card effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+/* Modern button styles */
+.modern-button {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Magic button with glow effect */
+.magic-button {
+  background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%);
+  position: relative;
+  overflow: hidden;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.8); }
+  100% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.5); }
+}
+
+.modern-button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.modern-button:hover:before {
+  left: 100%;
+}
+
+.modern-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* Success animation */
+.success-animation {
+  animation: successPulse 0.6s ease;
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Modern input field */
+.modern-input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.modern-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+/* Floating labels */
+.floating-label {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.floating-label label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  color: #6b7280;
+  pointer-events: none;
+  background: white;
+  padding: 0 8px;
+}
+
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 12px;
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* Icon animations */
+.icon-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Loading spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(102, 126, 234, 0.2);
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Feature cards */
+.feature-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 1.5rem;
+  }
+  
+  .modern-button {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,5 @@
+COPY THIS URL FOR UPTIMEROBOT:
+
+https://collection-creator.onrender.com/health
+
+This is the URL you need to paste in the "URL (or IP)" field when creating your monitor.

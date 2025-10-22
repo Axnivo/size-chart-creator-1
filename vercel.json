@@ -1,0 +1,15 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "build/client",
+  "installCommand": "npm install",
+  "framework": "remix",
+  "regions": ["iad1"],
+  "functions": {
+    "app/routes/*.tsx": {
+      "maxDuration": 10
+    }
+  },
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
