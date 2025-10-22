@@ -1,6 +1,5 @@
 import { createRequestHandler } from "@remix-run/express";
 import express from "express";
-import session from "express-session";
 import path from "path";
 import { fileURLToPath } from "url";
 import { readFileSync } from "fs";
@@ -12,19 +11,6 @@ const BUILD_DIR = path.join(__dirname, "build");
 
 const app = express();
 
-// Configure session middleware with proper SameSite settings for embedded apps
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'your-secret-key',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    sameSite: 'none' // Critical for embedded Shopify apps
-  }
-}));
-
 // Increase timeout for Cloudflare/Render
 app.use((req, res, next) => {
   // Set longer timeout for all requests
@@ -33,18 +19,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// Add CORS headers and cookie settings for Shopify embedded apps
+// Add CORS headers for Shopify
 app.use((req, res, next) => {
   res.header('X-Frame-Options', 'ALLOWALL');
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  
-  // Fix SameSite cookie policy for embedded apps
-  res.header('Set-Cookie', 'SameSite=None; Secure');
-  res.header('Referrer-Policy', 'origin-when-cross-origin');
-  
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 

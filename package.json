@@ -33,7 +33,6 @@
     "@shopify/shopify-app-session-storage-memory": "^4.0.20",
     "compression": "^1.8.1",
     "express": "^4.21.2",
-    "express-session": "^1.18.1",
     "isbot": "^5.1.0",
     "morgan": "^1.10.1",
     "react": "^18.2.0",
