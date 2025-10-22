@@ -51,7 +51,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({ 
     status: 'healthy', 
     timestamp: new Date().toISOString(),
-    service: 'collection-creator',
+    service: 'size-chart-creator-1',
     platform: 'Render'
   });
 });
@@ -67,7 +67,7 @@ app.listen(port, host, () => {
   
   // Keep-alive service for Render free tier
   if (process.env.RENDER || process.env.NODE_ENV === 'production') {
-    const APP_URL = process.env.SHOPIFY_APP_URL || 'https://collection-creator.onrender.com';
+    const APP_URL = process.env.SHOPIFY_APP_URL || 'https://size-chart-creator-1.onrender.com';
     console.log('🔥 Starting aggressive keep-alive service...');
     console.log(`📍 App URL: ${APP_URL}`);
     
@@ -110,7 +110,7 @@ app.listen(port, host, () => {
   console.log('');
   console.log('⚠️  IMPORTANT: To prevent 10-minute delays after reinstall:');
   console.log('📌 Set up external monitoring at UptimeRobot.com (FREE)');
-  console.log('📌 Monitor URL: https://collection-creator.onrender.com/health');
+  console.log('📌 Monitor URL: https://size-chart-creator-1.onrender.com/health');
   console.log('📌 See SETUP_MONITORING.md for instructions');
   console.log('');
 });
