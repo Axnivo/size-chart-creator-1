@@ -1,5 +1,6 @@
 import { createRequestHandler } from "@remix-run/express";
 import express from "express";
+import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 import { readFileSync } from "fs";
@@ -10,6 +11,26 @@ const __dirname = path.dirname(__filename);
 const BUILD_DIR = path.join(__dirname, "build");
 
 const app = express();
+
+// Parse cookies
+app.use(cookieParser());
+
+// Chrome 80+ SameSite cookie fix middleware
+app.use((req, res, next) => {
+  const userAgent = req.get('User-Agent') || '';
+  const isChrome = userAgent.includes('Chrome');
+  const chromeVersion = isChrome ? parseInt(userAgent.split('Chrome/')[1]) : 0;
+  
+  if (isChrome && chromeVersion >= 80) {
+    const originalCookie = res.cookie;
+    res.cookie = function(name, value, options = {}) {
+      options.sameSite = options.sameSite || 'None';
+      options.secure = options.secure !== false; // Default to true unless explicitly false
+      return originalCookie.call(this, name, value, options);
+    };
+  }
+  next();
+});
 
 // Increase timeout for Cloudflare/Render
 app.use((req, res, next) => {
