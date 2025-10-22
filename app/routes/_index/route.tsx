@@ -21,9 +21,9 @@ export default function App() {
   return (
     <div className={styles.index}>
       <div className={styles.content}>
-        <h1 className={styles.heading}>Collections Creator for Shopify</h1>
+        <h1 className={styles.heading}>Size Chart Creator for Shopify</h1>
         <p className={styles.text}>
-          Easily create and manage product collections in your Shopify store.
+          Create beautiful, responsive size charts for your Shopify products.
         </p>
         {showForm && (
           <Form className={styles.form} method="post" action="/auth/login">
@@ -39,16 +39,16 @@ export default function App() {
         )}
         <ul className={styles.list}>
           <li>
-            <strong>Bulk Collection Creation</strong>. Create multiple collections
-            at once to organize your products efficiently.
+            <strong>Easy Size Chart Creation</strong>. Create professional size charts
+            with intuitive drag-and-drop interface.
           </li>
           <li>
-            <strong>Smart Categorization</strong>. Automatically organize products
-            into collections based on tags, types, or vendors.
+            <strong>Responsive Design</strong>. Size charts look perfect on all devices -
+            desktop, tablet, and mobile.
           </li>
           <li>
-            <strong>Easy Management</strong>. Update and manage all your collections
-            from a single, intuitive dashboard.
+            <strong>Product Integration</strong>. Seamlessly add size charts to your
+            product pages with one click.
           </li>
         </ul>
       </div>
