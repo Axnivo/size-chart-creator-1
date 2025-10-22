@@ -1,4 +1,4 @@
-# Deploy to Render.com - Step by Step Guide
+# Deploy Size Chart Creator to Render.com
 
 ## ✅ Prerequisites
 
@@ -16,34 +16,39 @@ git commit -m "Ready for Render deployment"
 git push origin main
 ```
 
-### Step 2: Create Services on Render
+### Step 2: Create Web Service on Render
 
-1. **Log in to Render.com** → Click "New +" → Select "Blueprint"
-2. **Connect your GitHub repository**
-3. **Render will auto-detect the `render.yaml` file** and create both services:
-   - `collection-creator-backend` (Python/FastAPI)
-   - `collection-creator-frontend` (Node.js/Remix)
+1. **Log in to Render.com** → Click "New +" → Select "Web Service"
+2. **Connect your GitHub repository** (size-chart-creator-1)
+3. **Configure the service:**
+   - **Name:** `size-chart-creator` (or your preferred name)
+   - **Runtime:** Node
+   - **Branch:** main
+   - **Build Command:** `npm install; npm run build`
+   - **Start Command:** `npm run start`
+   - **Instance Type:** Starter ($7/month) recommended
 
 ### Step 3: Configure Environment Variables
 
-After services are created, configure environment variables:
+**CRITICAL:** You must add these environment variables before the service will work:
 
-#### For Frontend Service (`collection-creator-frontend`):
-1. Go to service dashboard → "Environment"
-2. Add these variables:
-   ```
-   SHOPIFY_API_KEY=your_shopify_api_key_here
-   SHOPIFY_API_SECRET=your_shopify_api_secret_here
-   ```
-3. The following are auto-configured by render.yaml:
-   - `NODE_ENV=production` 
-   - `BACKEND_API_URL` (auto-linked to backend service)
-   - `HOST` (auto-populated)
-   - `SCOPES` (already set)
+1. Go to your service dashboard → "Environment" tab
+2. Add these **required** variables:
 
-#### For Backend Service (`collection-creator-backend`):
-- All environment variables are pre-configured in render.yaml
-- No additional configuration needed
+```
+SHOPIFY_API_KEY=your_shopify_api_key_here
+SHOPIFY_API_SECRET=your_shopify_api_secret_here
+SCOPES=read_products,write_products,read_product_listings,write_product_listings
+APP_URL=https://your-service-name.onrender.com
+SESSION_SECRET=your_32_character_random_string_here
+NODE_ENV=production
+PORT=10000
+```
+
+**Important Notes:**
+- Replace `your-service-name` with your actual Render service name
+- Generate a strong random string for SESSION_SECRET (32+ characters)
+- Get SHOPIFY_API_KEY and SHOPIFY_API_SECRET from Shopify Partner Dashboard
 
 ### Step 4: Deploy Services
 
